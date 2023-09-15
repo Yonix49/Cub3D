@@ -6,12 +6,21 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:08:29 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/15 19:55:10 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:04:57 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3D.h"
 #include "string.h"
+typedef struct s_compass
+{
+	int	i;
+	int	w;
+	int	s;
+	int	n;
+	int	e;
+}		t_compass;
+
 char	**get_map(char **argv)
 {
 	int		fd;
@@ -41,14 +50,6 @@ char	**get_map(char **argv)
 	return (map);
 }
 
-typedef struct s_compass
-{
-	int	i;
-	int	w;
-	int	s;
-	int	n;
-	int	e;
-}		t_compass;
 
 int	verif_elem_compass(char **map)
 {
