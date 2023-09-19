@@ -6,14 +6,15 @@
 #    By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:25:26 by mhajji-b          #+#    #+#              #
-#    Updated: 2023/09/15 18:18:26 by mhajji-b         ###   ########.fr        #
+#    Updated: 2023/09/19 12:25:45 by mhajji-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_DIR = ./SRCS
 
 SRCS = cub3D.c ft_split.c get_map.c get_next_line_utils.c get_next_line.c parsing.c parsing2.c \
-       parsing3.c utils_1.c utils_2.c
+       parsing3.c utils_1.c utils_2.c utils_3.c check_colors.c classique_utils.c get_maps.c check_compass.c 
+	   
 
 OBJS = $(addprefix $(SRC_DIR)/, $(SRCS:%.c=%.o))
 
