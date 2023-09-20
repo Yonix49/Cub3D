@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:09:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/19 13:14:38 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:24:57 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ typedef struct s_cord
 	unsigned int	end_y;
 	unsigned int	lig;
 	unsigned int	col;
+	char			*path_texture_no;
+	char			*path_texture_so;
+	char			*path_texture_we;
+	char			*path_texture_ea;
+	int				**f_colors;
+	int				**c_colors;
+	unsigned int	f_rgb;
+	unsigned int	c_rgb;
 }					t_cord;
 
 typedef struct s_compass
@@ -59,9 +67,10 @@ typedef struct s_data
 	int				line_length;
 	int				endian;
 	char			**map;
+	char			**mapi;
 	char			**map_compass;
 	char			**map_wall;
-
+	char			**map_for_games;
 	void			*mlx;
 	void			*img_mur;
 	void			*img_exit;
@@ -78,6 +87,7 @@ typedef struct s_data
 	t_compass		t_compass;
 	t_cord			cord;
 }					t_data;
+char *ft_strdup_for_ray(char *src, int grande);
 
 int					ft_strlen(const char *s);
 
@@ -130,23 +140,22 @@ int					ft_count_space(char *line);
 ///////////////////////////////////////////////////////////////
 //***********************classique_utils********************///
 ///////////////////////////////////////////////////////////////
-int	ft_atoi(const char *str);
-unsigned int	ft_isnum(char *str);
-unsigned int	count_char(char *str, char c);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-
+int					ft_atoi(const char *str);
+unsigned int		ft_isnum(char *str);
+unsigned int		count_char(char *str, char c);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
 
 ///////////////////////////////////////////////////////////////
 //***********************parsing_comppass*******************///
 ///////////////////////////////////////////////////////////////
 
-int	parsing_compass(t_data *data);
-int	verif_elem_compass(char **map);
-int	check_colors(t_data *data, int *i, int *j);
-int	is_valid_colors(char *map, char c);
-int	check_value_colors(t_data *data, int *i);
-int	check_compass(t_data *data, int *i, int *j, char *test);
-unsigned int	ft_len_dot(char *str, char c);
+int					parsing_compass(t_data *data);
+int					verif_elem_compass(t_data *data);
+int					check_colors(t_data *data, int *i, int *j);
+int					is_valid_colors(char *map, char c);
+int					check_value_colors(t_data *data, int *i);
+int					check_compass(t_data *data, int *i, int *j, char *test);
+unsigned int		ft_len_dot(char *str, char c);
 
 // Get_map
 // int				is_valid_path_exit(char **map, struct cord pos);

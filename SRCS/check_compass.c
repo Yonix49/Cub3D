@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:23:19 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/19 12:24:04 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:44:42 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,39 +41,35 @@ int	parsing_compass(t_data *data)
 	return (0);
 }
 
-int	verif_elem_compass(char **map)
+int	verif_elem_compass(t_data *data)
 {
 	t_compass	counts;
 	int			j;
 	int			i;
-
+	int 		flag;
+	flag = 0;
 	counts.i = 0;
-	counts.w = 0;
-	counts.s = 0;
-	counts.n = 0;
-	counts.e = 0;
 	i = 0;
-	while (map[i])
+	while (data->map_wall[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (data->map_wall[i][j])
 		{
-			if (map[i][j] == 'W')
-				counts.w++;
-			else if (map[i][j] == 'S')
-				counts.s++;
-			else if (map[i][j] == 'N')
-				counts.n++;
-			else if (map[i][j] == 'E')
-				counts.e++;
+			if (data->map_wall[i][j] == 'W')
+				flag++;
+			else if (data->map_wall[i][j] == 'S')
+				flag++;
+			else if (data->map_wall[i][j] == 'N')
+				flag++;
+			else if (data->map_wall[i][j] == 'E')
+				flag++;
 			j++;
 		}
 		i++;
 	}
-	if (counts.s > 1 || counts.w > 1 || counts.n > 1 || counts.e > 1)
+	if (!(flag == 1))
 	{
-		printf("%d %d %d %d\n", counts.s, counts.w, counts.n, counts.e);
-		printf("Error il doit y'avoir un élément de chaque\n");
+		printf("Error\n il doit y'avoir un seul element d'orientation");
 		return (2);
 	}
 	return (0);

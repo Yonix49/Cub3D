@@ -6,7 +6,7 @@
 #    By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:25:26 by mhajji-b          #+#    #+#              #
-#    Updated: 2023/09/19 12:25:45 by mhajji-b         ###   ########.fr        #
+#    Updated: 2023/09/20 13:45:06 by mhajji-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -g -Wall -Werror -Wextra -g3
+CFLAGS = -g -Wall -Werror -Wextra
 
 RM = rm -f
 
