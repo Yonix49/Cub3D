@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:02:07 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/20 15:32:20 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:12:05 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	check_value_colors(t_data *data, int *i)
 	check = NULL;
 	p = 0;
 	verif = ft_substr(data->map_compass[*i], ft_isnum(data->map_compass[*i]),
-			(size_t)ft_strlen(data->map_compass[*i]));
-	check = ft_split(verif, ',');
+			(size_t)ft_strlen(data->map_compass[*i]), data);
+	check = ft_split(verif, ',', data);
 	while (check[p])
 	{
 		// printf("check[EA %s] \n", check[p]);
@@ -117,8 +117,8 @@ int	check_compass(t_data *data, int *i, int *j, char *test)
 		}
 		test = ft_substr(data->map_compass[*i],
 							ft_len_dot(data->map_compass[*i], '.'),
-							(size_t)ft_strlen(data->map_compass[*i]) - 4);
-		data->cord.path_texture_no = ft_strdup(test);
+							(size_t)ft_strlen(data->map_compass[*i]) - 4, data);
+		data->cord.path_texture_no = ft_strdup(test, data);
 		(*j)++;
 	}
 	else if (*j == 1)
@@ -131,8 +131,8 @@ int	check_compass(t_data *data, int *i, int *j, char *test)
 		}
 		test = ft_substr(data->map_compass[*i],
 							ft_len_dot(data->map_compass[*i], '.'),
-							(size_t)ft_strlen(data->map_compass[*i]) - 4);
-		data->cord.path_texture_so = ft_strdup(test);
+							(size_t)ft_strlen(data->map_compass[*i]) - 4, data);
+		data->cord.path_texture_so = ft_strdup(test, data);
 		(*j)++;
 	}
 	else if (*j == 2)
@@ -145,8 +145,8 @@ int	check_compass(t_data *data, int *i, int *j, char *test)
 		}
 		test = ft_substr(data->map_compass[*i],
 							ft_len_dot(data->map_compass[*i], '.'),
-							(size_t)ft_strlen(data->map_compass[*i])  - 4);
-		data->cord.path_texture_we = ft_strdup(test);
+							(size_t)ft_strlen(data->map_compass[*i])  - 4, data);
+		data->cord.path_texture_we = ft_strdup(test, data);
 		(*j)++;
 	}
 	else if (*j == 3)
@@ -159,8 +159,8 @@ int	check_compass(t_data *data, int *i, int *j, char *test)
 		}
 		test = ft_substr(data->map_compass[*i],
 							ft_len_dot(data->map_compass[*i], '.'),
-							(size_t)ft_strlen(data->map_compass[*i]) - 4);
-		data->cord.path_texture_ea = ft_strdup(test);	
+							(size_t)ft_strlen(data->map_compass[*i]) - 4, data);
+		data->cord.path_texture_ea = ft_strdup(test, data);	
 		(*j)++;
 	}
 	return (0);

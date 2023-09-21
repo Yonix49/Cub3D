@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 19:19:00 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/17 13:04:36 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:15:23 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_char_set(char *str, int c)
 	return (0);
 }
 
-static char	*retrieve_file_content(int fd, char *buf, char *reste)
+static char	*retrieve_file_content(int fd, char *buf, char *reste, t_data *data)
 {
 	int		read_ptr;
 	char	*temp;
@@ -45,15 +45,14 @@ static char	*retrieve_file_content(int fd, char *buf, char *reste)
 			break ;
 		buf[read_ptr] = '\0';
 		temp = reste;
-		reste = ft_strjoin(temp, buf);
-		free(temp);
+		reste = ft_strjoin(temp, buf, data);
 		if (is_char_set(reste, 10) == 1)
 			break ;
 	}
 	return (reste);
 }
 
-static char	*extract_line(char *line)
+static char	*extract_line(char *line, t_data *data)
 {
 	int		i;
 	char	*reste;
@@ -63,17 +62,16 @@ static char	*extract_line(char *line)
 		i++;
 	if (line[i] == '\0' || line[1] == '\0')
 		return (0);
-	reste = ft_substr(line, i + 1, ft_strlen(line) - i);
+	reste = ft_substr(line, i + 1, ft_strlen(line) - i, data);
 	line[i + 1] = '\0';
 	if (*reste == '\0')
 	{
-		free(reste);
 		reste = NULL;
 	}
 	return (reste);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, t_data *data)
 {
 	static char	*reste;
 	char		*line;
@@ -81,14 +79,13 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
 		return (NULL);
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buf = ft_malloc(sizeof(char) * (BUFFER_SIZE + 1), data);
 	if (!buf)
 		return (NULL);
-	line = retrieve_file_content(fd, buf, reste);
-	free(buf);
+	line = retrieve_file_content(fd, buf, reste, data);
 	if (!line)
 		return (NULL);
-	reste = extract_line(line);
+	reste = extract_line(line, data);
 	return (line);
 }
 

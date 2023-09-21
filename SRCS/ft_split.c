@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 02:12:33 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/15 17:41:15 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:12:32 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,9 @@ static	int	word_len(char *str, int i, char c)
 	return (z);
 }
 
-static char	**ft_malloc_error(char **tab)
-{
-	unsigned int	i;
 
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (NULL);
-}
 
-static	void	assemblage(char **tab, char *str, int i, char c)
+static	void	assemblage(char **tab, char *str, int i, char c, t_data *data)
 {
 	int	k;
 	int	j;
@@ -73,9 +61,7 @@ static	void	assemblage(char **tab, char *str, int i, char c)
 			i++;
 		if (str[i])
 		{
-			tab [j] = (char *)malloc(word_len(str, i, c) + 1 * sizeof(char));
-			if (!tab[j])
-				ft_malloc_error(tab);
+			tab [j] = (char *)ft_malloc(word_len(str, i, c) + 1 * sizeof(char), data);
 			while (str[i] && str[i] != c)
 			{
 				tab[j][k] = str[i];
@@ -89,7 +75,7 @@ static	void	assemblage(char **tab, char *str, int i, char c)
 	tab[j] = NULL;
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_split(char *s, char c, t_data *data)
 {
 	char	*str;
 	char	**tab;
@@ -97,10 +83,10 @@ char	**ft_split(char *s, char c)
 
 	i = 0;
 	str = (char *)s;
-	tab = malloc((numbrers_words(str, c, ft_strlen(str)) + 1) * sizeof(char *));
+	tab = ft_malloc((numbrers_words(str, c, ft_strlen(str)) + 1) * sizeof(char *), data);
 	if (!tab)
 		return (NULL);
-	assemblage (tab, str, i, c);
+	assemblage (tab, str, i, c, data);
 	return (tab);
 }
 

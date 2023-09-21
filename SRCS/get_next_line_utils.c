@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 19:18:57 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/15 17:41:19 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:14:02 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen1(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(char *src, t_data *data)
 {
 	int		i;
 	char	*dest;
@@ -34,7 +34,7 @@ char	*ft_strdup(char *src)
 		return (NULL);
 	while (src[i])
 		i++;
-	dest = malloc(sizeof(char) * i + 1);
+	dest = ft_malloc(sizeof(char) * i + 1, data);
 	if (!dest)
 		return (NULL);
 	i = 0;
@@ -58,7 +58,7 @@ size_t	ft_verification(int start, size_t len, char *s)
 	return (x);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len, t_data *data)
 {
 	char	*s1;
 	size_t	i;
@@ -70,11 +70,11 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	x = ft_verification(start, len, s);
 	if (s && start >= ft_strlen1(s))
 	{
-		s1 = malloc(sizeof(char));
+		s1 = ft_malloc(sizeof(char), data);
 		s1[0] = '\0';
 		return (s1);
 	}
-	s1 = malloc(sizeof(char) * (x));
+	s1 = ft_malloc(sizeof(char) * (x), data);
 	if (!s1)
 		return (NULL);
 	while (i < len && (char)s[i + start])
@@ -86,7 +86,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (s1);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2, t_data *data)
 {
 	int		i;
 	int		j;
@@ -95,10 +95,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	j = 0;
 	if (!s1 && s2 && *s2)
-		return (ft_strdup(s2));
+		return (ft_strdup(s2, data));
 	if (!s2)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * (ft_strlen1(s1) + ft_strlen1(s2) + 1));
+	str = (char *)ft_malloc(sizeof(char) * (ft_strlen1(s1) + ft_strlen1(s2) + 1), data);
 	if (str == NULL)
 		return (NULL);
 	while (s1[i] != '\0')

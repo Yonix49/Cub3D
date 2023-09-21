@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:44:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/18 13:47:57 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:02:58 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ size_t	ft_securite(size_t nmemb, size_t size)
 	return (nmemb * size);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t nmemb, size_t size, t_data *data)
 {
 	unsigned char	*tab;
 
-	tab = malloc(ft_securite(nmemb, size));
+	tab = ft_malloc(ft_securite(nmemb, size), data);
 	if (!tab)
 		return (NULL);
 	ft_memset(tab, 0, ft_securite(nmemb, size));

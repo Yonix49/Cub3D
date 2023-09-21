@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:08:29 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/20 20:38:02 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:06:31 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,21 @@ int	ft_count_space(char *line)
 	return (i);
 }
 
-void	*realloc_map(void *ptr, size_t ptrsize, size_t newsize)
+void	*realloc_map(void *ptr, size_t ptrsize, size_t newsize, t_data *data)
 {
 	void	*newptr;
 
 	if (ptr == NULL)
-		return (ft_calloc(newsize, 1));
+		return (ft_calloc(newsize, 1, data));
 	if (newsize == 0)
-		return (free(ptr), NULL);
+		return (NULL);
 	if (newsize <= ptrsize)
 		return (ptr);
-	newptr = ft_calloc(newsize, 1);
+	newptr = ft_calloc(newsize, 1, data);
 	if (!newptr)
 		return (NULL);
 	ft_memcpy(newptr, ptr, ptrsize);
-	free(ptr);
+	// free(ptr);
 	return (newptr);
 }
 
@@ -239,12 +239,13 @@ int	verif_bords(char **map)
 	return (0);
 }
 
-char  **get_final_map(int grande, int count_line, char **map)
+char	**get_final_map(int grande, int count_line, char **map)
 {
 	char	**mapi;
 	int		len;
 	int		i;
 
+	// int		j;
 	mapi = malloc(sizeof(char **) * count_line + 1);
 	if (!map)
 		return (NULL);
@@ -259,9 +260,22 @@ char  **get_final_map(int grande, int count_line, char **map)
 			i++;
 			continue ;
 		}
+		// printf("map[%s]\n", map[i]);
 		mapi[i] = ft_strdup_for_ray(map[i], grande);
 		i++;
 	}
+	// i--;
+	mapi[i] = NULL;
+	// j = 0;
+	// while (j < grande)
+	// {
+	// 	if (mapi[i][j] != '1')
+	// 	{
+	// 		mapi[i][j] = '0';
+	// 	}
+	// 	j++;
+	// }
+	// mapi[i][j] = '\0';
 	return (mapi);
 }
 int	ft_count_games(char **map, int count_games)
@@ -286,7 +300,7 @@ int	ft_count_games(char **map, int count_games)
 	}
 	return (count_games);
 }
-char	**ft_copie_map(char **map, char **mapi)
+char	**ft_copie_map(char **map, char **mapi, t_data *data)
 {
 	int	i;
 	int	j;
@@ -302,7 +316,7 @@ char	**ft_copie_map(char **map, char **mapi)
 		{
 			if (map[i][j] == '1')
 			{
-				mapi[x] = ft_strdup(map[i]);
+				mapi[x] = ft_strdup(map[i], data);
 				x++;
 				break ;
 			}
@@ -346,7 +360,7 @@ int	get_map_for_game(char **map, t_data *data)
 	data->map_for_games = malloc(sizeof(char *) * (count_games));
 	if (!data->map_for_games)
 		return (2);
-	data->map_for_games = ft_copie_map(map, data->map_for_games);
+	data->map_for_games = ft_copie_map(map, data->map_for_games, data);
 	if (data->map_for_games == NULL)
 		return (9);
 	grande = get_grande(data->map_for_games);
@@ -366,26 +380,21 @@ char	*ft_strdup_for_ray(char *src, int grande)
 
 	i = 0;
 	src_len = ft_strlen(src);
-	if (!src)
-		return (NULL);
-	if (src_len >= grande)
-		return (ft_strdup(src));
 	dest = malloc(sizeof(char) * (grande + 1));
 	if (!dest)
 		return (NULL);
 	src_index = 0;
 	while (i < grande)
 	{
-		if (src[src_index] == '\n' || src[src_index] == ' ')
+		if (src_index >= src_len)
+			dest[i] = '0';
+		else if (src[src_index] == '\n' || src[src_index] == ' ')
 			dest[i] = '0';
 		else
 			dest[i] = src[src_index];
 		src_index++;
-		if (src_index >= src_len)
-			dest[i] = '0';
 		i++;
 	}
-	// printf("%s index == %d\n", dest, i );
 	dest[i] = '\0';
 	return (dest);
 }
@@ -474,31 +483,10 @@ int	main(int argc, char **argv)
 		return (3);
 	if (get_different_maps(&data, argv) != 0)
 		return (4);
-	if (parsing_compass(&data) != 0)
-		return (5);
-	if (parsing_map_wall(&data) != 0)
-		return (7);
-	// int i = 0;
-	// printf("cord\n");
-	// while (data.map_compass[i])
-	// {
-	// 	printf("%s", data.map_compass[i]);
-	// 	i++;
-	// }
-	// printf("map\n");
-	// while (data.map[i])
-	// {
-	// 	printf("%s", data.map[i]);
-	// 	i++;
-	// }
-	// i = 0;
-	// if (verif_elem_compass(map) != 0)
-	// 	printf("not good");
-	// if (verif_bords(map) != 0)
-	// 	printf("not goodd");
-	// if (verif_element(map) != 0)
-	// {
-	// 	printf("not gooddd");
-	// }
+	ft_free_all_garbage(&data);	
+	// if (parsing_compass(&data) != 0)
+	// 	return (5);
+	// if (parsing_map_wall(&data) != 0)
+	// 	return (7);
 	return (0);
 }

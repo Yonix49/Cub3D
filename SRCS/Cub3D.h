@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:09:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/20 20:24:57 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:11:42 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ typedef struct s_compass
 	int				n;
 	int				e;
 }					t_compass;
+typedef struct s_memory
+{
+	void			*add;
+	struct s_memory	*next;
+}					t_memory;
 
 typedef struct s_data
 {
@@ -86,24 +91,26 @@ typedef struct s_data
 	int				conso;
 	t_compass		t_compass;
 	t_cord			cord;
+	t_memory		*d_mem;
 }					t_data;
-char *ft_strdup_for_ray(char *src, int grande);
+
+char				*ft_strdup_for_ray(char *src, int grande);
 
 int					ft_strlen(const char *s);
 
-char				*ft_strdup(char *src);
+char				*ft_strdup(char *src, t_data *data);
 
 size_t				ft_verification(int start, size_t len, char *s);
 
-char				*ft_substr(char *s, unsigned int start, size_t len);
+char				*ft_substr(char *s, unsigned int start, size_t len, t_data *data);
 
 void				ft_scotch(char *dest, char *ss1, char *ss2);
 
-char				*ft_strjoin(char *s1, char *s2);
+char				*ft_strjoin(char *s1, char *s2, t_data *data);
 
-char				*get_next_line(int fd);
+char				*get_next_line(int fd, t_data *data);
 
-char				**ft_split(char *s, char c);
+char				**ft_split(char *s, char c, t_data *data);
 
 int					verif_bords(char **map);
 
@@ -114,16 +121,16 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					verif_namearg(int argc, char **argv);
 int					verifall(char **map);
 // PARSING
-char				**get_map(char *line, int fd, int i, char **map);
+char				**get_map(char *line, int fd, int i, char **map, t_data *data);
 
 void				ft_colle(char *dest, char *ss1, char *ss2);
-char				*ft_strjoin_1(char *s1, char *s2);
+char				*ft_strjoin_1(char *s1, char *s2, t_data *data);
 int					verif_element(char **map);
 void				*ft_memset(void *s, int c, size_t n);
 
 size_t				ft_securite(size_t nmemb, size_t size);
 
-void				*ft_calloc(size_t nmemb, size_t size);
+void				*ft_calloc(size_t nmemb, size_t size, t_data *data);
 
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 ///////////////////////////////////////////////////////////////
@@ -131,9 +138,10 @@ void				*ft_memcpy(void *dst, const void *src, size_t n);
 ///////////////////////////////////////////////////////////////
 int					get_different_maps(t_data *data, char **argv);
 
-char				**get_map(char *line, int fd, int i, char **map);
-char				**get_wall(char **map, int i);
-void				*realloc_map(void *ptr, size_t ptrsize, size_t newsize);
+char				**get_map(char *line, int fd, int i, char **map,
+						t_data *data);
+char				**get_wall(char **map, int i, t_data *data);
+void				*realloc_map(void *ptr, size_t ptrsize, size_t newsize, t_data *data);
 char				**get_cord_map(char **map, t_data *data);
 int					ft_count_space(char *line);
 
@@ -156,6 +164,17 @@ int					is_valid_colors(char *map, char c);
 int					check_value_colors(t_data *data, int *i);
 int					check_compass(t_data *data, int *i, int *j, char *test);
 unsigned int		ft_len_dot(char *str, char c);
+
+///////////////////////////////////////////////////////////////
+//***********************garbage_collector*******************///
+///////////////////////////////////////////////////////////////
+void				memory_check(void *add, t_data *data);
+
+void				*ft_malloc(size_t size, t_data *data);
+
+void				ft_free_this(void *add, t_data *data);
+
+void				ft_free_all_garbage(t_data *data);
 
 // Get_map
 // int				is_valid_path_exit(char **map, struct cord pos);
