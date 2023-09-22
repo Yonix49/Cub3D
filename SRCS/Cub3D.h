@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:09:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 15:35:41 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:45:13 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,9 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 ///////////////////////////////////////////////////////////////
 //***********************parsing_comppass******************///
 ///////////////////////////////////////////////////////////////
+int 				check_all_compass(t_data *data);
+int					check_opening(char *path);
+int					check_texture(t_data *data);
 
 int					parsing_compass(t_data *data);
 int					verif_elem_compass(t_data *data);
@@ -200,6 +203,7 @@ unsigned int	ft_count_this(char *map);
 int	it_is_this_char(char *str, char c);
 int	ft_space(char c);
 int	ft_count_space(char *line);
+void	ft_putstr_fd(int fd, char *s);
 
 ///////////////////////////////////////////////////////////////
 ///**********************garbage_collector******************///

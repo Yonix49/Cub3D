@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:02:07 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 15:06:23 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:53:43 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	check_colors(t_data *data, int *i, int *j)
 	{
 		if (ft_strncmp("F ", data->map_compass[*i], 2) != 0)
 		{
-			printf("Error not F on floor F\n");
+			ft_putstr_fd(2, "Error\nNot F on floor F");
 			return (9);
 		}
 		if (is_valid_colors(data->map_compass[*i], 'F') != 0
 			|| count_char(data->map_compass[*i], ',') != 2)
 		{
-			printf("not valid colors cord found\n");
+			ft_putstr_fd(2, "Error\nNot valid colors cord found");
 			return (2);
 		}
 		if (check_value_colors(data, i) != 0)
@@ -37,13 +37,13 @@ int	check_colors(t_data *data, int *i, int *j)
 	{
 		if (ft_strncmp("C ", data->map_compass[*i], 2) != 0)
 		{
-			printf("Error not C on ceiling\n");
+			ft_putstr_fd(2, "Error\n Not C on ceiling\n");
 			return (9);
 		}
 		if (is_valid_colors(data->map_compass[*i], 'C') != 0
 			|| count_char(data->map_compass[*i], ',') != 2)
 		{
-			printf("not valid colors cord found\n");
+			ft_putstr_fd(2, "Error\n Not valid colors cord found\n");
 			return (2);
 		}
 		if (check_value_colors(data, i) != 0)
@@ -93,15 +93,14 @@ int	check_value_colors(t_data *data, int *i)
 	check = ft_split(verif, ',', data);
 	while (check[p])
 	{
-		// printf("check[EA %s] \n", check[p]);
-		if (!(ft_atoi(check[p]) >= 0 && ft_atoi(check[p]) <= 255))
+		if (check[p] && !(ft_atoi(check[p]) >= 0 && ft_atoi(check[p]) <= 255))
 		{
-			printf("Colors not between 0 and 255\n");
+			ft_putstr_fd(2, "Error\nColors not between 0 and 255\n");
 			return (3);
 		}
 		p++;
 	}
-	printf("check between 0 and 255 good \n");
+	// ft_putstr_fd(2, "check between 0 and 255 good \n");
 	return (0);
 }
 
@@ -111,8 +110,7 @@ int	check_compass(t_data *data, int *i, int *j, char *test)
 	{
 		if (ft_strncmp("NO", data->map_compass[*i], 2) != 0)
 		{
-			printf("Error\n");
-			printf("NO");
+			ft_putstr_fd(2, "Error\nCompass");
 			return (9);
 		}
 		test = ft_substr(data->map_compass[*i],
@@ -125,7 +123,7 @@ int	check_compass(t_data *data, int *i, int *j, char *test)
 	{
 		if (ft_strncmp("SO", data->map_compass[*i], 2) != 0)
 		{
-			printf("Error\n");
+			ft_putstr_fd(2, "Error\nCompass");
 			printf("SO");
 			return (9);
 		}
@@ -139,7 +137,7 @@ int	check_compass(t_data *data, int *i, int *j, char *test)
 	{
 		if (ft_strncmp("WE", data->map_compass[*i], 2) != 0)
 		{
-			printf("Error\n");
+			ft_putstr_fd(2, "Error\nCompass");
 			printf("WE");
 			return (9);
 		}
@@ -153,7 +151,7 @@ int	check_compass(t_data *data, int *i, int *j, char *test)
 	{
 		if (ft_strncmp("EA", data->map_compass[*i], 2) != 0)
 		{
-			printf("Error\n");
+			ft_putstr_fd(2, "Error\nCompass");
 			printf("EA");
 			return (9);
 		}

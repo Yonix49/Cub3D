@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 19:18:57 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/21 20:04:01 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:18:08 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strdup(char *src, t_data *data)
 		return (NULL);	
 	while (src[i])
 		i++;
-	dest = ft_malloc(sizeof(char) * i + 1, data);
+	dest = ft_malloc(sizeof(char) * (i + 1), data);
 	if (!dest)
 		return (NULL);
 	i = 0;

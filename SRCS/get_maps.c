@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:13:22 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/21 20:27:15 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:05:36 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_different_maps(t_data *data, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd <= 0)
 	{
-		printf("Erreur ouverture fichie\n");
+		ft_putstr_fd(2, "Error\n ouverture fichier\n");
 		return (2);
 	}
 	data->map = get_map(NULL, fd, 0, data->map, data);
@@ -84,7 +84,7 @@ char	**get_map(char *line, int fd, int i, char **map, t_data *data)
 		map[i++] = line;
 		map[i] = NULL;
 		if (i == 0)
-			printf("not a valid map\n");
+			ft_putstr_fd(2, "Error\n Map not valid");
 	}
 	return (map);
 }

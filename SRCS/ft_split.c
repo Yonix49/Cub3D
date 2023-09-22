@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 02:12:33 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/21 16:12:32 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:15:15 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static	void	assemblage(char **tab, char *str, int i, char c, t_data *data)
 			i++;
 		if (str[i])
 		{
-			tab [j] = (char *)ft_malloc(word_len(str, i, c) + 1 * sizeof(char), data);
+			tab [j] = (char *)ft_malloc(sizeof(char) * (word_len(str, i, c) + 1), data);
 			while (str[i] && str[i] != c)
 			{
 				tab[j][k] = str[i];
@@ -83,7 +83,7 @@ char	**ft_split(char *s, char c, t_data *data)
 
 	i = 0;
 	str = (char *)s;
-	tab = ft_malloc((numbrers_words(str, c, ft_strlen(str)) + 1) * sizeof(char *), data);
+	tab = ft_malloc(sizeof(char*) * (numbrers_words(str, c, ft_strlen(str)) + 1), data);
 	if (!tab)
 		return (NULL);
 	assemblage (tab, str, i, c, data);

@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 14:39:35 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 15:35:19 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:06:59 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,7 @@ int	verif_element_of_map(char **map)
 				&& map[i][p] != 'E' && map[i][p] != 'S' && map[i][p] != 'N'
 				&& map[i][p] != ' ')
 			{
-				printf("Error \n un element inconnu a ete trouve %c \n",
-						map[i][p]);
+				ft_putstr_fd(2, "Error\nUn element inconnu a ete trouve %c \n");
 				return (3);
 			}
 			p++;

@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:08:29 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 14:48:53 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:19:32 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,18 @@ int	init_data(t_data *data)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
 
 	init_data(&data);
-	if ((verif_namearg(argc, argv)) != 0 || verif_open(argv) != 0)
-	{
-		ft_free_all_garbage(&data);
-		return (3);
-	}
+	if ((verif_namearg(argc, argv)) != 0 || verif_open(argv) != 0 || env[0] == NULL)
+		return(	ft_free_all_garbage(&data),3);
 	if (get_different_maps(&data, argv) != 0)
-	{
-		ft_free_all_garbage(&data);
-		return (1);
-	}
-	if (parsing_compass(&data) != 0)
-	{
-		ft_free_all_garbage(&data);
-		return (2);
-	}
+		return(	ft_free_all_garbage(&data),1);
+	if (check_all_compass(&data) != 0)
+		return(	ft_free_all_garbage(&data),2);
 	if (parsing_map_wall(&data) != 0)
-	{
-		ft_free_all_garbage(&data);
-		return (6);
-	}
-	ft_free_all_garbage(&data);
-	return (0);
+		return (ft_free_all_garbage(&data),6);
+	return (ft_free_all_garbage(&data), 0);
 }
-// leak pour mauvaise map void space

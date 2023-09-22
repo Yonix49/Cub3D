@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:38:52 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/15 18:04:47 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:56:21 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,3 @@ int	verif_namearg(int argc, char **argv)
 	return (0);
 }
 
-void	ft_free_all(t_data *img)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (img->map[i])
-	{
-		free(img->map[i]);
-		i++;
-	}
-	free(img->map);
-	free(img);
-}
-
-void	ft_free(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
