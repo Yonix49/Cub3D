@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:09:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/21 16:11:42 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:35:41 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_data
 	int				line_length;
 	int				endian;
 	char			**map;
-	char			**mapi;
+	char			**map_ray;
 	char			**map_compass;
 	char			**map_wall;
 	char			**map_for_games;
@@ -94,7 +94,6 @@ typedef struct s_data
 	t_memory		*d_mem;
 }					t_data;
 
-char				*ft_strdup_for_ray(char *src, int grande);
 
 int					ft_strlen(const char *s);
 
@@ -134,7 +133,7 @@ void				*ft_calloc(size_t nmemb, size_t size, t_data *data);
 
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 ///////////////////////////////////////////////////////////////
-//***********************get_maps***************************///
+///**********************get_maps**************************///
 ///////////////////////////////////////////////////////////////
 int					get_different_maps(t_data *data, char **argv);
 
@@ -143,10 +142,10 @@ char				**get_map(char *line, int fd, int i, char **map,
 char				**get_wall(char **map, int i, t_data *data);
 void				*realloc_map(void *ptr, size_t ptrsize, size_t newsize, t_data *data);
 char				**get_cord_map(char **map, t_data *data);
-int					ft_count_space(char *line);
+
 
 ///////////////////////////////////////////////////////////////
-//***********************classique_utils********************///
+///**********************classique_utils*******************///
 ///////////////////////////////////////////////////////////////
 int					ft_atoi(const char *str);
 unsigned int		ft_isnum(char *str);
@@ -154,7 +153,7 @@ unsigned int		count_char(char *str, char c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 
 ///////////////////////////////////////////////////////////////
-//***********************parsing_comppass*******************///
+//***********************parsing_comppass******************///
 ///////////////////////////////////////////////////////////////
 
 int					parsing_compass(t_data *data);
@@ -163,10 +162,47 @@ int					check_colors(t_data *data, int *i, int *j);
 int					is_valid_colors(char *map, char c);
 int					check_value_colors(t_data *data, int *i);
 int					check_compass(t_data *data, int *i, int *j, char *test);
-unsigned int		ft_len_dot(char *str, char c);
+////////////////////////////////////////////////////////////////
+///**********************PARSING_MAP*************************///
+////////////////////////////////////////////////////////////////
+
+int	flood_recursively_to_border(char **map, int x, int y);
+int	parsing_map_wall(t_data *data);
+int	map_got_void(char **map);
+int	get_map_for_game(char **map, t_data *data);
+unsigned int	ft_len_dot(char *str, char c);
+int	ft_count_games(char **map, int count_games);
+int	get_grande(char **map);
+
+char	**ft_copie_map(char **map, t_data *data);
+
+char	**get_final_map(int grande, int count_line, char **map, t_data *data);
+
+int	verif_element_of_map(char **map);
+
+int	verif_larg(char **map);
+int	verif_bords(char **map);
+
+////////////////////////////////////////////////////////////////
+///**********************flood_fill**************************///
+////////////////////////////////////////////////////////////////
+int	flood_recursively_to_border(char **map, int x, int y);
+int	arounded_player(char **map, t_data *data);
+
+
+////////////////////////////////////////////////////////////////
+///**********************UTILS*******************************///
+////////////////////////////////////////////////////////////////
+
+char		*ft_strdup_for_ray(char *src, int grande, t_data *data);
+unsigned int	first_char_line(char *map);
+unsigned int	ft_count_this(char *map);
+int	it_is_this_char(char *str, char c);
+int	ft_space(char c);
+int	ft_count_space(char *line);
 
 ///////////////////////////////////////////////////////////////
-//***********************garbage_collector*******************///
+///**********************garbage_collector******************///
 ///////////////////////////////////////////////////////////////
 void				memory_check(void *add, t_data *data);
 

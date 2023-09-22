@@ -6,11 +6,11 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:11:08 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/19 12:11:52 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:06:16 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D.h"
+#include "../Cub3D.h"
 
 int	ft_atoi(const char *str)
 {

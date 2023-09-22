@@ -6,11 +6,11 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:02:07 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/21 16:12:05 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:06:23 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D.h"
+#include "../Cub3D.h"
 
 int	check_colors(t_data *data, int *i, int *j)
 {

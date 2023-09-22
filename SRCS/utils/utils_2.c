@@ -6,11 +6,11 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:07:18 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/15 17:50:54 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:49:56 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D.h"
+#include "../Cub3D.h"
 
 
 void	ft_putnbr_fd(int n, int fd)

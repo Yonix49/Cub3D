@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:13:22 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/21 16:14:21 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:27:15 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,33 @@ int	get_different_maps(t_data *data, char **argv)
 	data->map_compass = get_cord_map(data->map, data);
 	return (0);
 }
-
 char	**get_cord_map(char **map, t_data *data)
 {
 	int		i;
 	int		j;
 	int		x;
 	char	**dest;
-	(void)(data);
 	x = 0;
 	i = 0;
 	j = 0;
 	dest = NULL;
-	while (map[i] && j < 6)
-	{
-		if (map[i][1] != '\0')
-			j++;
+	while (map[i])
 		i++;
-	}
 	dest = ft_malloc(sizeof(char **) * i + 1, data);
 	if (!dest)
 		return (NULL);
-	j = 0;
-	while (i > j)
+	i = 0;
+	while (map[i] && j < 6)
 	{
-		dest[j] = ft_strdup(map[j], data);
-		j++;
+		if (map[i][1] != '\0' && map[i][0] != ' ' && map[i][0] != '\n')
+		{
+			dest[j] = ft_strdup(map[i], data);
+			j++;
+		}
+		i++;
 	}
 	dest[j] = NULL;
-	// data->map_wall = get_wall(map, i);
+	data->map_wall = get_wall(map, i, data);
 	return (dest);
 }
 
@@ -92,25 +90,24 @@ char	**get_map(char *line, int fd, int i, char **map, t_data *data)
 }
 char	**get_wall(char **map, int i, t_data *data)
 {
-	int		j;
-	char	**dest;
+	int j;
+	char **dest;
 
 	j = 0;
+	
 	dest = NULL;
 	while (map[j])
-	{
 		j++;
-	}
 	dest = ft_malloc(sizeof(char **) * (j - i + 1), data);
 	if (!dest)
 		return (NULL);
 	j = 0;
-	while (map[i - 1])
+	while (map[i])
 	{
 		dest[j] = ft_strdup(map[i], data);
 		i++;
 		j++;
 	}
-	dest[i] = NULL;
+	dest[j] = NULL;
 	return (dest);
 }

@@ -6,12 +6,12 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:44:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/21 16:02:58 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:49:58 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "Cub3D.h"
+#include "../Cub3D.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

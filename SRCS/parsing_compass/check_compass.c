@@ -6,11 +6,11 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:23:19 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/20 17:44:42 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:06:27 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D.h"
+#include "../Cub3D.h"
 int	parsing_compass(t_data *data)
 {
 	int		i;

@@ -6,11 +6,11 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 19:48:49 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/21 16:15:31 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:49:50 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D.h"
+#include "../Cub3D.h"
 
 int	ft_strlen(const char *s)
 {
