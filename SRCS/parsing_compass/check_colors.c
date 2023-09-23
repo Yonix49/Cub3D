@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:02:07 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/23 19:08:15 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/23 19:54:59 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ int	check_compass(t_data *data, int *i, int *j, char *test)
 	{
 		if (check_orientation(data, i) != 0)
 			return (3);
-		i(*j)++;
+		(*j)++;
 	}
 	else if (*j == 3)
 	{

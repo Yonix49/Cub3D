@@ -1,4 +1,0 @@
-SRCS/parsing_compass/check_colors.o: SRCS/parsing_compass/check_colors.c \
-  SRCS/parsing_compass/../Cub3D.h \
-  SRCS/parsing_compass/../../minilibx-linux/mlx.h \
-  SRCS/parsing_compass/../../minilibx-linux/mlx_int.h

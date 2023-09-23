@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:08:29 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/23 12:46:21 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/23 19:58:39 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,4 @@ int	main(int argc, char **argv, char **env)
 		return (ft_free_all_garbage(&data),6);
 	return (ft_free_all_garbage(&data), 0);
 }
+//close fd error
