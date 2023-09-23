@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:13:22 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 16:05:36 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/23 12:44:39 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ int	get_different_maps(t_data *data, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd <= 0)
 	{
-		ft_putstr_fd(2, "Error\n ouverture fichier\n");
+		ft_putstr_fd(2, "Error\nOuverture fichier\n");
 		return (2);
 	}
 	data->map = get_map(NULL, fd, 0, data->map, data);
+	if (!data->map)
+		return (3);
+	// printf("%s je suis la\n", data->map[0]);
 	data->map_compass = get_cord_map(data->map, data);
 	return (0);
 }
@@ -32,19 +35,20 @@ char	**get_cord_map(char **map, t_data *data)
 	int		j;
 	int		x;
 	char	**dest;
+
 	x = 0;
 	i = 0;
 	j = 0;
 	dest = NULL;
 	while (map[i])
 		i++;
-	dest = ft_malloc(sizeof(char **) * i + 1, data);
+	dest = ft_malloc(sizeof(char **) * (i + 1), data); // Ajout de parenthèses pour la taille correcte.
 	if (!dest)
 		return (NULL);
 	i = 0;
 	while (map[i] && j < 6)
 	{
-		if (map[i][1] != '\0' && map[i][0] != ' ' && map[i][0] != '\n')
+		if (map[i][0] != '\0' && map[i][0] != ' ' && map[i][0] != '\n') // Vérification de map[i][0]
 		{
 			dest[j] = ft_strdup(map[i], data);
 			j++;
@@ -55,6 +59,7 @@ char	**get_cord_map(char **map, t_data *data)
 	data->map_wall = get_wall(map, i, data);
 	return (dest);
 }
+
 
 char	**get_map(char *line, int fd, int i, char **map, t_data *data)
 {

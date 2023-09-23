@@ -6,18 +6,23 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:23:19 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 18:21:14 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:26:25 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Cub3D.h"
 int	check_opening(char *path)
 {
+	// for (int i = 0; path[i]; i++)
+	// printf("path==%c\n", path[i]);
 	int	fd;
-	printf("path ==%s\n", path);
+	if (path == NULL)
+		return (3);
 	fd = open(path, __O_DIRECTORY);
 	if (fd != -1)
+	{
 		return (2);
+	}
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (2);

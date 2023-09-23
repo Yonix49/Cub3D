@@ -6,7 +6,7 @@
 #    By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:25:26 by mhajji-b          #+#    #+#              #
-#    Updated: 2023/09/22 18:48:22 by mhajji-b         ###   ########.fr        #
+#    Updated: 2023/09/23 13:57:15 by mhajji-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,18 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra -MMD
 
 RM = rm -f
+
+DEPS = $(OBJS:.o=.d)
 
 all: $(NAME)
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+-include $(DEPS)
 
 $(NAME): $(OBJS)
 	cd minilibx-linux && make
@@ -41,10 +45,10 @@ $(NAME): $(OBJS)
 
 clean:
 	cd minilibx-linux && make clean
-	$(RM) $(OBJS) $(OBJSBONUS)
+	$(RM) $(OBJS) $(OBJSBONUS) $(DEPS)
 
 fclean: clean
-	$(RM) $(NAME) $(BONUS)
+	$(RM) $(NAME) $(BONUS) $(DEPS)
 
 re: fclean all
 
