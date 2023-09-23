@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:13:22 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/23 12:44:39 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/23 19:07:58 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	get_different_maps(t_data *data, char **argv)
 	data->map = get_map(NULL, fd, 0, data->map, data);
 	if (!data->map)
 		return (3);
-	// printf("%s je suis la\n", data->map[0]);
 	data->map_compass = get_cord_map(data->map, data);
 	return (0);
 }

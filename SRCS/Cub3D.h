@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:09:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 17:45:13 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/23 19:06:08 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,9 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int 				check_all_compass(t_data *data);
 int					check_opening(char *path);
 int					check_texture(t_data *data);
+int					check_orientation(t_data *data, int *i);
+void				stock_path(t_data *data,  char *test);
+char	*get_sub(t_data *data, int *i);
 
 int					parsing_compass(t_data *data);
 int					verif_elem_compass(t_data *data);

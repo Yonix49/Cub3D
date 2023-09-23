@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:23:19 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/23 13:26:25 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/23 18:58:26 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@ int	check_opening(char *path)
 {
 	// for (int i = 0; path[i]; i++)
 	// printf("path==%c\n", path[i]);
+	printf("%s\n", path);
 	int	fd;
 	if (path == NULL)
 		return (3);
@@ -29,13 +30,8 @@ int	check_opening(char *path)
 	close (fd);
 	return (0);
 }
-int					check_texture(t_data *data)
+int		check_texture(t_data *data)
 {
-	// // data->cord.path_texture_no = ft_substr(data->cord.path_texture_no, 2,(size_t)ft_strlen(data->cord.path_texture_no), data);
-	// printf("path ==%s\n", data->cord.path_texture_no);
-	// for (int i = 0; data->cord.path_texture_no[i]; i++)
-	// printf("path ==%c\n", data->cord.path_texture_no[i]);
-	
 	if (check_opening(data->cord.path_texture_no) != 0)
 		return (4);
 	if (check_opening(data->cord.path_texture_so) != 0)
