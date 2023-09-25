@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"string_view": "c",
+		"cub3d.h": "c",
+		"stddef.h": "c"
+	}
+}
