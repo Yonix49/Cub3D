@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:02:07 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/25 12:06:11 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/26 18:53:37 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,17 @@ int	is_valid_colors(char *map, char c)
 	}
 	return (0);
 }
+int	count_tab(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
+}
 int	check_value_colors(t_data *data, int *i)
 {
 	char	*verif;
@@ -91,6 +102,11 @@ int	check_value_colors(t_data *data, int *i)
 	verif = ft_substr(data->map_compass[*i], ft_isnum(data->map_compass[*i]),
 			(size_t)ft_strlen(data->map_compass[*i]), data);
 	check = ft_split(verif, ',', data);
+	if ((count_tab(check) != 3))
+	{
+		ft_putstr_fd(2, "Error\nColors \n");
+		return (1);
+	}
 	while (check[p])
 	{
 		if (check[p] && !(ft_atoi(check[p]) >= 0 && ft_atoi(check[p]) <= 255))
@@ -100,7 +116,6 @@ int	check_value_colors(t_data *data, int *i)
 		}
 		p++;
 	}
-	// ft_putstr_fd(2, "check between 0 and 255 good \n");
 	return (0);
 }
 char	*get_sub(t_data *data, int *i)
