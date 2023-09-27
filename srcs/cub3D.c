@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:08:29 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/25 15:23:00 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/27 15:26:31 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,50 +39,6 @@ int	init_data(t_data *data)
 	return (0);
 }
 
-// int	init_window(t_data_box *d)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = d->ma->x * 64;
-// 	y = d->ma->y * 64;
-// 	d->m = malloc(sizeof(t_mlx));
-// 	if (!d->m)
-// 		return (0);
-// 	d->m->m = mlx_init();
-// 	if (!d->m->m)
-// 		exit(EXIT_FAILURE);
-// 	d->m->win = mlx_new_window(d->m->m, x, y, "So_long");
-// 	if (!d->m->win)
-// 		return (free(d->m->m), 0);
-// 	if (!set_images(d))
-// 		return (ft_printf("Error\nImages Not OK\n"), 0);
-// 	display_map(d);
-// 	mlx_hook(d->m->win, 17, 0, mlx_loop_end, d->m->m);
-// 	mlx_key_hook(d->m->win, moves, d);
-// 	mlx_loop(d->m->m);
-// 	return (0);
-// }
-// int	init_window(t_data_box *d)
-// {
-
-// 	x = d->ma->x * 64;
-// 	y = d->ma->y * 64;
-// 	d->m = malloc(sizeof(t_mlx));
-// 	d->m->m = mlx_init();
-// 	if (!d->m->m)
-// 		exit(EXIT_FAILURE);
-// 	d->m->win = mlx_new_window(d->m->m, x, y, "So_long");
-// 	if (!d->m->win)
-// 		return (free(d->m->m), 0);
-// 	if (!set_images(d))
-// 		return (ft_printf("Error\nImages Not OK\n"), 0);
-// 	display_map(d);
-// 	mlx_hook(d->m->win, 17, 0, mlx_loop_end, d->m->m);
-// 	mlx_key_hook(d->m->win, moves, d);
-// 	mlx_loop(d->m->m);
-// 	return (0);
-// }
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_images.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:46:17 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/09/25 17:46:54 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/27 14:04:02 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	set_images(t_data *data)
 {
-	t_img	img;
+	t_imag	img;
 
 	if (!malloc_textures(data))
 		return (0);
@@ -26,7 +26,7 @@ int	set_images(t_data *data)
         return (0);
     if (!load_image(data, data->all->textures[2], data->cord.path_texture_we, &img))
         return (0);
-    if (!load_image(data, data->all->textures[3], data->cord.path_texture_ea, &img))
+    if (!load_image(data, data->all->textures[3], data->cord.path_texture_ea, &img)) // east est en 65x65
         return (0);
     return (1);
 }
@@ -35,13 +35,13 @@ int	set_main_img(t_data *data)
 {
 	data->all->img.img = mlx_new_image(data->all->mlx, WIDTH, HEIGHT);
 	if (!data->all->img.img)
-		return (ft_putsr_fd(2, "Error\nFailed to create image\n"), 0);
+		return (ft_putstr_fd(2, "Error\nFailed to create image\n"), 0);
 	data->all->img.data = (int *)mlx_get_data_addr(data->all->img.img, &data->all->img.bpp,
             				                       &data->all->img.size_l, &data->all->img.endian);
 	return (1);
 }
 
-int	load_image(t_data *data, int *texture, char *path, t_img *img)
+int	load_image(t_data *data, int *texture, char *path, t_imag *img)
 {
 	int	x;
 	int	y;
