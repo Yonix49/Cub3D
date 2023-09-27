@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2123/09/25 11:41:59 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/09/27 16:28:08 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/27 17:43:54 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	start_mlx(t_data *data)
 	data->all->ray_diry = 0;
 	data->all->wall_x = 0;
 	data->all->move_speed = 0.099;
-	data->all->rot_speed = 0.05;
+	data->all->rot_speed = 0.09;
 	data->all->side = 0;
 	data->all->tex_x = 0;
 	data->all->tex_width = 64;
