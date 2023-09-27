@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2123/09/25 11:41:59 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/09/27 15:55:33 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:28:08 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	start_mlx(t_data *data)
 	data->all->mlx = mlx_init();
 	if (!data->all->mlx)
 		return (1);
-	data->all->win = mlx_new_window(data->all->mlx, 720, 1080, "Cub3D");
+	data->all->win = mlx_new_window(data->all->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!data->all->win)
 		return (ft_putstr_fd(2, "Error\nFailed to create window\n"), 1);
 	if (!set_images(data))

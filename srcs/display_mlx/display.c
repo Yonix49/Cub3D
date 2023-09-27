@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 12:06:02 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/27 15:37:07 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:50:51 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ void	draw_color_texture(t_data *data, int x, int tex_num, double step)
 	tmp = -1;
 	tex_pos = (data->all->draw_start - HEIGHT / 2 + data->all->line_height / 2) * step;
 	while (++tmp < data->all->draw_start)
-		data->all->buf[tmp][x] = data->cord.c_rgb;
+		data->all->buf[tmp][x] = data->c_rgb;
 	tmp = data->all->draw_end - 1;
 	while (++tmp < HEIGHT)
-		data->all->buf[tmp][x] = data->cord.f_rgb;
+		data->all->buf[tmp][x] = data->f_rgb;
 	while (++y <= data->all->draw_end)
 	{
 		tex_y = (int)tex_pos & (data->all->tex_height - 1);

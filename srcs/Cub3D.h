@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:09:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/27 16:04:25 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:56:33 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ typedef struct s_cord
 	char			*path_texture_ea;
 	int				**f_colors;
 	int				**c_colors;
-	int	f_rgb;
-	int	c_rgb;
 	char			**ff_rgb;
 	char			**cc_rgb;
 
@@ -136,6 +134,10 @@ typedef struct s_data
 	char			**map_compass;
 	char			**map_wall;
 	char			**map_for_games;
+	char			**cc_rgb;
+	char			**ff_rgb;
+	int				f_rgb;
+	int				c_rgb;
 	t_compass		t_compass;
 	t_cord			cord;
 	t_memory		*d_mem;
@@ -210,6 +212,7 @@ int					check_texture(t_data *data);
 int					check_orientation(t_data *data, int *i);
 void				stock_path(t_data *data, char *test);
 char				*get_sub(t_data *data, int *i);
+// void				put_rgb_data(t_data *data);
 
 int					parsing_compass(t_data *data);
 int					verif_elem_compass(t_data *data);
@@ -220,10 +223,7 @@ int					check_compass(t_data *data, int *i, int *j, char *test);
 
 int					stock_colors_c_rgb(t_data *data, int *i);
 int					stock_colors_f_rgb(t_data *data, int *i);
-char	*ft_verif(char *str);
-void	put_rgb_data(char c, char **rgb, t_data *data);
-
-
+char				*ft_verif(char *str);
 
 // int					colors_f_rgb(char **src, t_data *data);
 ////////////////////////////////////////////////////////////////

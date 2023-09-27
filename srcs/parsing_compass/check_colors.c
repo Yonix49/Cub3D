@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:02:07 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/27 15:19:37 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/27 17:03:07 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ int	check_colors(t_data *data, int *i, int *j)
 			return (3);
 		(*j)++;
 	}
+	// put_rgb_data(data);
+	// for (int x = 0; data->cc_rgb[x]; x++)
+	// 	printf("cc [%s]\n", data->cc_rgb[x]);
+	// data->f_rgb = 65536 * ft_atoi(data->cc_rgb[0]) + 256 * ft_atoi(data->cc_rgb[1]) + ft_atoi(data->cc_rgb[2]);
+	// data->c_rgb = 65536 * ft_atoi(data->cc_rgb[0]) + 256 * ft_atoi(data->cc_rgb[1]) + ft_atoi(data->cc_rgb[2]);
+	// dprintf(1, "data->f_rgb = %d\n", data->f_rgb);
+	// dprintf(1, "data->c_rgb = %d\n", data->c_rgb);
 	printf("check_colors good\n");
 	return (0);
 }
@@ -66,7 +73,7 @@ char	*ft_verif(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
+		if (str[i] && !(str[i] >= '0' && str[i] <= '9'))
 		{
 			str[i] = '\0';
 			break ;
@@ -81,21 +88,23 @@ int	stock_colors_c_rgb(t_data *data, int *i)
 	int		x;
 
 	x = 0;
-	data->cord.cc_rgb = NULL;
+	// data->cc_rgb = NULL;
 	verif = ft_substr(data->map_compass[*i], ft_isnum(data->map_compass[*i]),
 			(size_t)ft_strlen(data->map_compass[*i]), data);
 	if (!verif)
 		return (1);
-	data->cord.cc_rgb = ft_split(verif, ',', data);
-	if (!data->cord.cc_rgb)
+	data->cc_rgb = ft_split(verif, ',', data);
+	if (!data->cc_rgb)
 		return (1);
-	while (data->cord.cc_rgb[x])
+	while (data->cc_rgb[x])
 	{
-		data->cord.cc_rgb[x] = ft_verif(data->cord.cc_rgb[x]);
+		data->cc_rgb[x] = ft_verif(data->cc_rgb[x]);
 		x++;
 	}
-	for (int x = 0; data->cord.cc_rgb[x]; x++)
-		printf("cc [%s]\n", data->cord.cc_rgb[x]);
+	// printf("cc [%s]\n", data->cc_rgb[0]);
+
+	// for (int x = 0; data->cc_rgb[x]; x++)
+	// 	printf("cc [%s]\n", data->cc_rgb[x]);
 	return (0);
 }
 int	stock_colors_f_rgb(t_data *data, int *i)
@@ -104,33 +113,34 @@ int	stock_colors_f_rgb(t_data *data, int *i)
 	int		x;
 
 	x = 0;
-	data->cord.ff_rgb = NULL;
+	data->ff_rgb = NULL;
 	verif = ft_substr(data->map_compass[*i], ft_isnum(data->map_compass[*i]),
 			(size_t)ft_strlen(data->map_compass[*i]), data);
 	if (!verif)
 		return (1);
-	data->cord.ff_rgb = ft_split(verif, ',', data);
-	if (!data->cord.ff_rgb)
+	data->ff_rgb = ft_split(verif, ',', data);
+	if (!data->ff_rgb)
 		return (1);
-	while (data->cord.ff_rgb[x])
+	while (data->ff_rgb[x])
 	{
-		data->cord.ff_rgb[x] = ft_verif(data->cord.ff_rgb[x]);
+		data->ff_rgb[x] = ft_verif(data->ff_rgb[x]);
 		x++;
 	}
-	for (int x = 0; data->cord.ff_rgb[x]; x++)
-		printf("ff [%s]\n", data->cord.ff_rgb[x]);
+	
+	// for (int x = 0; data->ff_rgb[x]; x++)
+	// 	printf("ff [%s]\n", data->ff_rgb[x]);
 	return (0);
 }
 
-void	put_rgb_data(char c, char **rgb, t_data *data)
-{
-	// for (int x = 0; rgb[x]; x++)
-	// 	printf("%s\n", rgb[x]);
-	if (c == 'F')
-		data->cord.f_rgb = 65536 * ft_atoi(rgb[0]) + 256 * ft_atoi(rgb[1]) + ft_atoi(rgb[2]);
-	else if (c == 'C')
-		data->cord.c_rgb = 65536 * ft_atoi(rgb[0]) + 256 * ft_atoi(rgb[1]) + ft_atoi(rgb[2]);
-}
+// void	put_rgb_data(t_data *data)
+// {
+// 	// for (int x = 0; rgb[x]; x++)
+// 	// 	printf("%s\n", rgb[x]);
+// 	// data->cord.f_rgb = 65536 * ft_atoi(data->cc_rgb[0]) + 256 * ft_atoi(data->cc_rgb[1]) + ft_atoi(data->cc_rgb[2]);
+// 	// data->cord.c_rgb = 65536 * ft_atoi(data->cc_rgb[0]) + 256 * ft_atoi(data->cc_rgb[1]) + ft_atoi(data->cc_rgb[2]);
+// 	// dprintf(1, "data->cord.f_rgb = %d\n", data->cord.f_rgb);
+// 	// dprintf(1, "data->cord.c_rgb = %d\n", data->cord.c_rgb);
+// }
 
 int	is_valid_colors(char *map, char c)
 {

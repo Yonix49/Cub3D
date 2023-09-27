@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:08:29 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/27 15:26:31 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/27 17:09:52 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ int	main(int argc, char **argv, char **env)
 		return (ft_free_all_garbage(&data), 2);
 	if (parsing_map_wall(&data) != 0)
 		return (ft_free_all_garbage(&data), 6);
+	
+	
+	// for (int x = 0; data.cc_rgb[x]; x++)
+		// printf("cc [%s]\n", data.cc_rgb[x]);
+	// for (int x = 0; data.ff_rgb[x]; x++)
+		// printf("ff [%s]\n", data.ff_rgb[x]);
+	data.f_rgb = 65536 * ft_atoi(data.ff_rgb[0]) + 256 * ft_atoi(data.ff_rgb[1]) + ft_atoi(data.ff_rgb[2]);
+	data.c_rgb = 65536 * ft_atoi(data.cc_rgb[0]) + 256 * ft_atoi(data.cc_rgb[1]) + ft_atoi(data.cc_rgb[2]);	
+	// printf("c_rgb = %d\n", data.c_rgb);
+	// printf("f_rgb = %d\n", data.f_rgb);
 	if (start_mlx(&data) != 0)
 		return (ft_free_all_garbage(&data), 7);
 	return (ft_free_all_garbage(&data), 0);
