@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:56:20 by fililafrapp       #+#    #+#             */
-/*   Updated: 2023/09/21 15:40:54 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:35:01 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,20 @@ void	ft_free_all_garbage(t_data *data)
 		free(tmp);
 		tmp = next;
 	}
+}
+
+int	data_free(t_data *data)
+{
+	mlx_destroy_image(data->all->mlx, data->all->img.img);
+	if (data->all->win)
+	{
+		mlx_clear_window(data->all->mlx, data->all->win);
+		mlx_destroy_window(data->all->mlx, data->all->win);
+	}
+	if (data->all->mlx)
+	{
+		mlx_destroy_display(data->all->mlx);
+		free(data->all->mlx);
+	}
+	return (0);
 }

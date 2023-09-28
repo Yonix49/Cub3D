@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+         #
+#    By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:25:26 by mhajji-b          #+#    #+#              #
-#    Updated: 2023/09/27 13:50:23 by mhajji-b         ###   ########.fr        #
+#    Updated: 2023/09/28 15:06:47 by kgezgin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS =	mlx_init.c\
 		set_images.c\
 		display.c\
 		key_press.c\
+		key_press_2.c\
 		free1.c\
 		get_next_line.c\
 		get_next_line_utils.c\
@@ -45,6 +46,8 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:%.c=%.o))
 
 DEPS = $(OBJS:.o=.d)
 
+FILE_TO_CHECK = "Makefile.gen"
+
 NAME = cub3D
 NORM = norminette
 
@@ -67,7 +70,12 @@ all: $(NAME)
 -include $(DEPS)
 
 $(NAME): $(OBJS)
-	cd minilibx-linux && make
+	@if test -e $(FILE_TO_CHECK); then\
+		cd minilibx-linux && make all; \
+	else \
+ 		echo ""; \
+	fi
+	# cd minilibx-linux && make
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -lm minilibx-linux/libmlx_Linux.a -lXext -lX11 -I ./minilibx_linux/
 	@echo "\033[1;32mCompilation terminée avec succès.\033[0m"
 

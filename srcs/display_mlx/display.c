@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 12:06:02 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/27 16:50:51 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/28 14:27:00 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	draw(t_data *data)
 		while (++x < WIDTH)
 			data->all->img.data[y * WIDTH + x] = data->all->buf[y][x];
 	}
-	mlx_put_image_to_window(data->all->mlx, data->all->win, data->all->img.img, 0, 0);
+	mlx_put_image_to_window(data->all->mlx, data->all->win, data->all->img.img,
+		0, 0);
 }
 
 int	get_num_tex(t_data *data)
@@ -78,26 +79,35 @@ void	draw_color_texture(t_data *data, int x, int tex_num, double step)
 {
 	double	tex_pos;
 	int		tmp;
-	int		y;
-	int		tex_y;
-	int		color;
 
-	y = data->all->draw_start -1;
 	tmp = -1;
-	tex_pos = (data->all->draw_start - HEIGHT / 2 + data->all->line_height / 2) * step;
+	tex_pos = (data->all->draw_start - HEIGHT / 2 + data->all->line_height / 2)
+		* step;
 	while (++tmp < data->all->draw_start)
 		data->all->buf[tmp][x] = data->c_rgb;
 	tmp = data->all->draw_end - 1;
 	while (++tmp < HEIGHT)
 		data->all->buf[tmp][x] = data->f_rgb;
-	while (++y <= data->all->draw_end)
+	draw_color_texture_utils(&data, tex_pos, step, tex_num);
+}
+
+void	draw_color_texture_utils(t_data **data, double tex_pos
+									, double step, int tex_num)
+{
+	int	y;
+	int	color;
+	int	tex_y;
+
+	y = (*data)->all->draw_start - 1;
+	while (++y <= (*data)->all->draw_end)
 	{
-		tex_y = (int)tex_pos & (data->all->tex_height - 1);
+		tex_y = (int)tex_pos & ((*data)->all->tex_height - 1);
 		tex_pos += step;
-		color = data->all->textures[tex_num][data->all->tex_height * tex_y + data->all->tex_x];
-		if (data->all->side == 1)
+		color = (*data)->all->textures[tex_num][(*data)->all->tex_height * tex_y
+			+ (*data)->all->tex_x];
+		if ((*data)->all->side == 1)
 			color = (color >> 1) & 8355711;
-		data->all->buf[y][x] = color;
-		data->all->re_buf = 1;
+		(*data)->all->buf[y][(*data)->x] = color;
+		(*data)->all->re_buf = 1;
 	}
 }

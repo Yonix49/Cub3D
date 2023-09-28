@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:09:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/27 18:24:56 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/28 15:05:38 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_ESC 65307
+# define KEY_RIGHT 65363
+# define KEY_LEFT 65361
 
 typedef struct s_cord
 {
@@ -127,6 +129,13 @@ typedef struct s_memory
 
 typedef struct s_data
 {
+	int				moving_forward;
+	int				moving_backward;
+	int				moving_left;
+	int				moving_right;
+	int				rotating_left;
+	int				rotating_right;
+	int				x;
 	void			*img;
 	char			*addr;
 	char			**map;
@@ -305,6 +314,9 @@ int					key_press_suite(int key, t_data **data);
 int					key_press_move_camera_right(int key, t_data **data);
 int					key_press_move_camera_left(int key, t_data **data);
 int					data_free(t_data *data);
+void				draw_color_texture_utils(t_data **data, double tex_pos, double step, int tex_num);
+void				init_all(t_data **data);
+int					key_release(int key, t_data **data);
 
 // static void			set_west_or_east(char c, t_all *all);
 // static void			set_south_or_north(char c, t_all *all);
