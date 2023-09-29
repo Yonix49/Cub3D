@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 02:12:33 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/25 11:31:54 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/28 18:09:38 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Cub3D.h"
-#include<unistd.h>
-#include<stdio.h>
-#include<string.h>
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 static int	numbrers_words(char *str, char c, size_t t)
 {
@@ -33,7 +33,7 @@ static int	numbrers_words(char *str, char c, size_t t)
 	return (nb_words);
 }
 
-static	int	word_len(char *str, int i, char c)
+static int	word_len(char *str, int i, char c)
 {
 	int	z;
 
@@ -46,9 +46,7 @@ static	int	word_len(char *str, int i, char c)
 	return (z);
 }
 
-
-
-static	void	assemblage(char **tab, char *str, int i, char c, t_data *data)
+static void	assemblage(char **tab, char *str, int i, t_data *data)
 {
 	int	k;
 	int	j;
@@ -57,12 +55,13 @@ static	void	assemblage(char **tab, char *str, int i, char c, t_data *data)
 	while (str[i])
 	{
 		k = 0;
-		while (str[i] == c)
+		while (str[i] == data->c)
 			i++;
 		if (str[i])
 		{
-			tab [j] = (char *)ft_malloc(sizeof(char) * (word_len(str, i, c) + 1), data);
-			while (str[i] && str[i] != c)
+			tab[j] = (char *)ft_malloc(sizeof(char) * (word_len(str, i, data->c)
+						+ 1), data);
+			while (str[i] && str[i] != data->c)
 			{
 				tab[j][k] = str[i];
 				i++;
@@ -81,12 +80,14 @@ char	**ft_split(char *s, char c, t_data *data)
 	char	**tab;
 	int		i;
 
+	data->c = c;
 	i = 0;
 	str = (char *)s;
-	tab = ft_malloc(sizeof(char*) * (numbrers_words(str, c, ft_strlen(str)) + 1), data);
+	tab = ft_malloc(sizeof(char *) * (numbrers_words(str, c, ft_strlen(str))
+				+ 1), data);
 	if (!tab)
 		return (NULL);
-	assemblage (tab, str, i, c, data);
+	assemblage(tab, str, i, data);
 	return (tab);
 }
 

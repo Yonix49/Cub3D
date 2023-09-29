@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_finding.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 14:34:19 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/25 12:27:51 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/28 17:44:06 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	flood_recursively_to_border(char **map, int x, int y)
 		return (1);
 	return (0);
 }
+
 char	**copied_map(char **map, t_data *data)
 {
 	int		i;
@@ -58,6 +59,7 @@ char	**copied_map(char **map, t_data *data)
 	cop_map[i] = NULL;
 	return (cop_map);
 }
+
 int	arounded_player(char **map, t_data *data)
 {
 	int		i;
@@ -68,7 +70,6 @@ int	arounded_player(char **map, t_data *data)
 	map_copie = copied_map(map, data);
 	if (!map_copie)
 		return (3);
-
 	while (map_copie[i])
 	{
 		j = 0;
@@ -78,10 +79,7 @@ int	arounded_player(char **map, t_data *data)
 				|| map_copie[i][j] == 'W' || map_copie[i][j] == 'E')
 			{
 				if (flood_recursively_to_border(map_copie, j, i))
-				{
-					printf("Error\n invalid borders");
-					return (9);
-				}
+					return (ft_putstr_fd(2, "Error\n invalid borders"), 2);
 				return (0);
 			}
 			j++;

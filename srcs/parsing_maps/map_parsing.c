@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 14:36:40 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/25 12:24:39 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/28 18:02:41 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,20 @@ int	parsing_map_wall(t_data *data)
 		return (8);
 	if (arounded_player(data->map_ray, data) != 0)
 		return (4);
-	
-
 	return (0);
 }
-int	map_got_void(char **map)
 
+int	map_got_void(char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+
 	i = 0;
 	j = 0;
-
 	while (map[i] && map[i][0] == '\n')
 		i++;
-
 	if (!map[i])
-	{
-		ft_putstr_fd(2, "Error\nEmpty map");
-		return (5);
-	}
-
+		return (ft_putstr_fd(2, "Error\nEmpty map"), 2);
 	while (map[i])
 	{
 		j = 0;
@@ -57,16 +50,9 @@ int	map_got_void(char **map)
 			if (map[i][j] != '1' && map[i][j] != '\n' && map[i][j] != ' '
 				&& map[i][j] != 'N' && map[i][j] != 'W' && map[i][j] != 'S'
 				&& map[i][j] != 'E' && map[i][j] != '0')
-			{
-				ft_putstr_fd(2, "Error\nWrong char in map");
-				printf("%c\n", map[i][j]);
-				return (4);
-			}
+				return (ft_putstr_fd(2, "Error\nWrong char in map"), 4);
 			else if (map[i][0] == '\n')
-			{
-				ft_putstr_fd(2, "Error\nGot void in map");
-				return (4);
-			}
+				return (ft_putstr_fd(2, "Error\nGot void in map"), 4);
 			j++;
 		}
 		i++;
@@ -86,22 +72,24 @@ int	verif_larg(char **map)
 	while (map[p])
 	{
 		if (it_is_this_char(map[p], '1') == 1)
-		{
 			break ;
-		}
 		p++;
 	}
 	while (map[x])
 		x++;
 	x--;
+	if (verif_large_2(map, x, p, i) != 0)
+		return (3);
+	return (0);
+}
+
+int	verif_large_2(char **map, int x, int p, int i)
+{
 	while (map[p][i] != '\0')
 	{
 		if (map[p] && map[p][i] != '1' && map[p][i] != '\n' && map[p][i] != ' '
 			&& map[p][i] != '\0')
-		{
-			ft_putstr_fd(2, "Error\nFirst line map incorrect\n");
-			return (8);
-		}
+			return (ft_putstr_fd(2, "Error\nFirst line map incorrect\n"), 8);
 		i++;
 	}
 	i = 0;
@@ -111,9 +99,7 @@ int	verif_larg(char **map)
 			&& map[x][i] != ' ')
 		{
 			if (map[x][0] != '\0' && map[x][i] != '1' && map[x][i] != '\n')
-			{
 				return (ft_putstr_fd(2, "Error\nLast line map incorrect\n"), 2);
-			}
 		}
 		i++;
 	}
@@ -122,8 +108,8 @@ int	verif_larg(char **map)
 
 int	verif_bords(char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map[i])
@@ -132,20 +118,11 @@ int	verif_bords(char **map)
 		while (map[i][j] && map[i][j] == ' ')
 			j++;
 		if (!map[i][j] || (map[i][j] != '1' && map[i][j] != '\n'))
-		{
-			ft_putstr_fd(2,
-							"Error\nCaractère invalide dans la première colonne\n");
-			return (1);
-		}
-		if (ft_strlen(map[i]) >= 2 &&
-			(map[i][ft_strlen(map[i]) - 2] != '1' &&
-				map[i][ft_strlen(map[i]) - 2] != '\n' &&
-				map[i][ft_strlen(map[i]) - 2] != '\0'))
-		{
-			ft_putstr_fd(2,
-							"Error\nCaractère invalide dans la dernière colonne\n");
-			return (1);
-		}
+			return (ft_putstr_fd(2, "Error\nChar wrong first linen"), 1);
+		if (ft_strlen(map[i]) >= 2 && (map[i][ft_strlen(map[i]) - 2] != '1'
+			&& map[i][ft_strlen(map[i]) - 2] != '\n'
+			&& map[i][ft_strlen(map[i]) - 2] != '\0'))
+			return (ft_putstr_fd(2, "Error\nChar wrong last line \n"), 1);
 		i++;
 	}
 	return (0);

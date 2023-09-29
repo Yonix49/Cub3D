@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_maps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:13:22 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/25 15:20:44 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/28 15:17:58 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 int	get_different_maps(t_data *data, char **argv)
 {
-	int	fd;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd <= 0)
+	data->fd = open(argv[1], O_RDONLY);
+	if (data->fd <= 0)
 	{
 		ft_putstr_fd(2, "Error\nOuverture fichier\n");
 		return (2);
 	}
-	data->map = get_map(NULL, fd, 0, data->map, data);
+	data->map = get_map(NULL, 0, data->map, data);
 	if (!data->map)
 		return (3);
 	data->map_compass = get_cord_map(data->map, data);
+	if (!data->map_compass)
+		return (4);
+	close(data->fd);
 	return (0);
 }
+
 char	**get_cord_map(char **map, t_data *data)
 {
 	int		i;
@@ -39,13 +41,13 @@ char	**get_cord_map(char **map, t_data *data)
 	dest = NULL;
 	while (map[i])
 		i++;
-	dest = ft_malloc(sizeof(char **) * (i + 1), data); // Ajout de parenthèses pour la taille correcte.
+	dest = ft_malloc(sizeof(char **) * (i + 1), data);
 	if (!dest)
 		return (NULL);
 	i = 0;
 	while (map[i] && j < 6)
 	{
-		if (map[i][0] != '\0' && map[i][0] != ' ' && map[i][0] != '\n') // Vérification de map[i][0]
+		if (map[i][0] != '\0' && map[i][0] != ' ' && map[i][0] != '\n')
 		{
 			dest[j] = ft_strdup(map[i], data);
 			j++;
@@ -57,24 +59,18 @@ char	**get_cord_map(char **map, t_data *data)
 	return (dest);
 }
 
-
-char	**get_map(char *line, int fd, int i, char **map, t_data *data)
+char	**get_map(char *line, int i, char **map, t_data *data)
 {
 	while (1)
 	{
 		line = ft_strdup("", data);
-		line = get_next_line(fd, data);
+		line = get_next_line(data->fd, data);
 		if (!line)
-		{
-			free(line);
 			break ;
-		}
 		if (i == 0 && ft_count_space(line) == ft_strlen(line))
 			continue ;
 		if (*(line + ft_count_space(line)) == '\0' && i == 0)
-		{
 			continue ;
-		}
 		map = realloc_map(map, sizeof(char *) * (i + 1), sizeof(char *) * (i
 					+ 2), data);
 		if (!map)
@@ -87,13 +83,13 @@ char	**get_map(char *line, int fd, int i, char **map, t_data *data)
 	}
 	return (map);
 }
+
 char	**get_wall(char **map, int i, t_data *data)
 {
-	int j;
-	char **dest;
+	int		j;
+	char	**dest;
 
 	j = 0;
-	
 	dest = NULL;
 	while (map[j])
 		j++;

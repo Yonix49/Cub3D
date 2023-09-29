@@ -3,34 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   check_compass.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:23:19 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/25 15:19:53 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/28 16:44:25 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Cub3D.h"
+
 int	check_opening(char *path)
 {
-	// for (int i = 0; path[i]; i++)
-	// printf("path==%c\n", path[i]);
-	printf("%s\n", path);
 	int	fd;
+
 	if (path == NULL)
 		return (3);
 	fd = open(path, __O_DIRECTORY);
 	if (fd != -1)
-	{
 		return (2);
-	}
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (2);
-	close (fd);
+	close(fd);
 	return (0);
 }
-int		check_texture(t_data *data)
+
+int	check_texture(t_data *data)
 {
 	if (check_opening(data->cord.path_texture_no) != 0)
 		return (4);
@@ -42,6 +40,7 @@ int		check_texture(t_data *data)
 		return (4);
 	return (0);
 }
+
 int	check_all_compass(t_data *data)
 {
 	if (parsing_compass(data) != 0)
@@ -53,6 +52,7 @@ int	check_all_compass(t_data *data)
 	}
 	return (0);
 }
+
 int	parsing_compass(t_data *data)
 {
 	int		i;
@@ -71,6 +71,13 @@ int	parsing_compass(t_data *data)
 		}
 		i++;
 	}
+	if (parsing_compass_2(data, i, j) != 0)
+		return (8);
+	return (0);
+}
+
+int	parsing_compass_2(t_data *data, int i, int j)
+{
 	while (data->map_compass[i] && j < 6)
 	{
 		if (data->map_compass[i][1] != '\0' && j < 6)
@@ -79,40 +86,6 @@ int	parsing_compass(t_data *data)
 				return (10);
 		}
 		i++;
-	}
-	return (0);
-}
-
-int	verif_elem_compass(t_data *data)
-{
-	// t_compass counts;
-	int j;
-	int i;
-	int flag;
-	flag = 0;
-	// counts.i = 0;
-	i = 0;
-	while (data->map_wall[i])
-	{
-		j = 0;
-		while (data->map_wall[i][j])
-		{
-			if (data->map_wall[i][j] == 'W')
-				flag++;
-			else if (data->map_wall[i][j] == 'S')
-				flag++;
-			else if (data->map_wall[i][j] == 'N')
-				flag++;
-			else if (data->map_wall[i][j] == 'E')
-				flag++;
-			j++;
-		}
-		i++;
-	}
-	if (!(flag == 1))
-	{
-		printf("Error\n il doit y'avoir un seul element d'orientation");
-		return (2);
 	}
 	return (0);
 }

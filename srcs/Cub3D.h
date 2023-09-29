@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:09:58 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/28 15:05:38 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/29 15:15:00 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_ESC 65307
-# define KEY_RIGHT 65363
-# define KEY_LEFT 65361
 
 typedef struct s_cord
 {
@@ -129,13 +127,6 @@ typedef struct s_memory
 
 typedef struct s_data
 {
-	int				moving_forward;
-	int				moving_backward;
-	int				moving_left;
-	int				moving_right;
-	int				rotating_left;
-	int				rotating_right;
-	int				x;
 	void			*img;
 	char			*addr;
 	char			**map;
@@ -147,6 +138,9 @@ typedef struct s_data
 	char			**ff_rgb;
 	int				f_rgb;
 	int				c_rgb;
+	int				fd;
+	char			c;
+	int				x;
 	t_compass		t_compass;
 	t_cord			cord;
 	t_memory		*d_mem;
@@ -179,8 +173,7 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					verif_namearg(int argc, char **argv);
 int					verifall(char **map);
 // PARSING
-char				**get_map(char *line, int fd, int i, char **map,
-						t_data *data);
+char				**get_map(char *line, int i, char **map, t_data *data);
 
 void				ft_colle(char *dest, char *ss1, char *ss2);
 char				*ft_strjoin_1(char *s1, char *s2, t_data *data);
@@ -197,8 +190,6 @@ void				*ft_memcpy(void *dst, const void *src, size_t n);
 ///////////////////////////////////////////////////////////////
 int					get_different_maps(t_data *data, char **argv);
 
-char				**get_map(char *line, int fd, int i, char **map,
-						t_data *data);
 char				**get_wall(char **map, int i, t_data *data);
 void				*realloc_map(void *ptr, size_t ptrsize, size_t newsize,
 						t_data *data);
@@ -219,11 +210,12 @@ int					check_all_compass(t_data *data);
 int					check_opening(char *path);
 int					check_texture(t_data *data);
 int					check_orientation(t_data *data, int *i);
-void				stock_path(t_data *data, char *test);
+void				stock_path(t_data *data, char *test, int *j);
 char				*get_sub(t_data *data, int *i);
 // void				put_rgb_data(t_data *data);
 
 int					parsing_compass(t_data *data);
+int					parsing_compass_2(t_data *data, int i, int j);
 int					verif_elem_compass(t_data *data);
 int					check_colors(t_data *data, int *i, int *j);
 int					is_valid_colors(char *map, char c);
@@ -233,6 +225,9 @@ int					check_compass(t_data *data, int *i, int *j, char *test);
 int					stock_colors_c_rgb(t_data *data, int *i);
 int					stock_colors_f_rgb(t_data *data, int *i);
 char				*ft_verif(char *str);
+int					check_floor(t_data *data, int *i);
+int					check_ceiling(t_data *data, int *i);
+int					checking_compass(t_data *data, int *i, int flag);
 
 // int					colors_f_rgb(char **src, t_data *data);
 ////////////////////////////////////////////////////////////////
@@ -253,8 +248,12 @@ char				**get_final_map(int grande, int count_line, char **map,
 						t_data *data);
 
 int					verif_element_of_map(char **map);
+char				**ft_copie_map_2(char **copie_map, char **map, int x,
+						t_data *data);
 
 int					verif_larg(char **map);
+int					verif_large_2(char **map, int x, int p, int i);
+
 int					verif_bords(char **map);
 
 ////////////////////////////////////////////////////////////////
@@ -314,9 +313,13 @@ int					key_press_suite(int key, t_data **data);
 int					key_press_move_camera_right(int key, t_data **data);
 int					key_press_move_camera_left(int key, t_data **data);
 int					data_free(t_data *data);
-void				draw_color_texture_utils(t_data **data, double tex_pos, double step, int tex_num);
+void				draw_color_texture_utils(t_data **data, double tex_pos,
+						double step, int tex_num);
 void				init_all(t_data **data);
-int					key_release(int key, t_data **data);
+void				up(t_data **data);
+void				down(t_data **data);
+void				left(t_data **data);
+void				right(t_data **data);
 
 // static void			set_west_or_east(char c, t_all *all);
 // static void			set_south_or_north(char c, t_all *all);

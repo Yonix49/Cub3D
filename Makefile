@@ -6,7 +6,7 @@
 #    By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:25:26 by mhajji-b          #+#    #+#              #
-#    Updated: 2023/09/28 15:06:47 by kgezgin          ###   ########.fr        #
+#    Updated: 2023/09/29 14:31:54 by kgezgin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRCS =	mlx_init.c\
 		get_next_line.c\
 		get_next_line_utils.c\
 		check_colors.c\
+		check_colors_2.c\
+		check_colors_3.c\
 		check_compass.c\
 		get_maps.c\
 		map_parsing.c\
@@ -70,12 +72,7 @@ all: $(NAME)
 -include $(DEPS)
 
 $(NAME): $(OBJS)
-	@if test -e $(FILE_TO_CHECK); then\
-		cd minilibx-linux && make all; \
-	else \
- 		echo ""; \
-	fi
-	# cd minilibx-linux && make
+	cd minilibx-linux && make
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -lm minilibx-linux/libmlx_Linux.a -lXext -lX11 -I ./minilibx_linux/
 	@echo "\033[1;32mCompilation terminée avec succès.\033[0m"
 

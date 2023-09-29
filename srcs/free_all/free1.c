@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:56:20 by fililafrapp       #+#    #+#             */
-/*   Updated: 2023/09/28 14:35:01 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/29 14:10:56 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	memory_check(void *add, t_data *data)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = mem;
-	}	
+	}
 }
 
 void	*ft_malloc(size_t size, t_data *data)
@@ -50,7 +50,7 @@ void	ft_free_this(void *add, t_data *data)
 	t_memory	*ex;
 	t_memory	*next;
 
-	tmp =  data->d_mem;
+	tmp = data->d_mem;
 	ex = NULL;
 	while (tmp)
 	{
@@ -63,7 +63,7 @@ void	ft_free_this(void *add, t_data *data)
 			if (ex)
 				ex->next = next;
 			else
-				 data->d_mem = next;
+				data->d_mem = next;
 			return ;
 		}
 		ex = tmp;

@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 19:48:49 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 14:49:50 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/28 18:10:20 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ char	*ft_strjoin_1(char *s1, char *s2, t_data *data)
 		return (ft_strdup(s2, data));
 	if (!s2)
 		return (NULL);
-	str = (char *)ft_malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1), data);
+	str = (char *)ft_malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1),
+			data);
 	if (str == NULL)
 		return (NULL);
 	while (s1[++i] != '\0')

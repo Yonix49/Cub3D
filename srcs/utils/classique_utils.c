@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:11:08 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 16:06:20 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/28 18:08:12 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ unsigned int	ft_isnum(char *str)
 	}
 	return (i);
 }
+
 unsigned int	count_char(char *str, char c)
 {
 	unsigned int	i;
@@ -74,6 +75,7 @@ unsigned int	count_char(char *str, char c)
 	}
 	return (j);
 }
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;

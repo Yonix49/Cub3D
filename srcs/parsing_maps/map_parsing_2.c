@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 14:39:35 by mhajji-b          #+#    #+#             */
-/*   Updated: 2023/09/22 16:06:59 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/09/28 17:52:09 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	get_map_for_game(char **map, t_data *data)
 	if (data->map_for_games == NULL)
 		return (9);
 	grande = get_grande(data->map_for_games);
-	data->map_ray = get_final_map(grande, count_games, data->map_for_games, data);
+	data->map_ray = get_final_map(grande, count_games, data->map_for_games,
+			data);
 	if (!data->map_ray)
 		return (3);
 	return (0);
@@ -41,6 +42,7 @@ char	**ft_copie_map(char **map, t_data *data)
 	int		x;
 	char	**copie_map;
 
+	copie_map = NULL;
 	x = 0;
 	i = 0;
 	while (map[i])
@@ -57,6 +59,15 @@ char	**ft_copie_map(char **map, t_data *data)
 		}
 		i++;
 	}
+	copie_map = ft_copie_map_2(copie_map, map, x, data);
+	return (copie_map);
+}
+
+char	**ft_copie_map_2(char **copie_map, char **map, int x, t_data *data)
+{
+	int	j;
+	int	i;
+
 	copie_map = ft_malloc(sizeof(char *) * (x + 1), data);
 	if (!copie_map)
 		return (NULL);
@@ -83,9 +94,9 @@ char	**ft_copie_map(char **map, t_data *data)
 
 char	**get_final_map(int grande, int count_line, char **map, t_data *data)
 {
-	char **mapi;
-	int len;
-	int i;
+	char	**mapi;
+	int		len;
+	int		i;
 
 	mapi = ft_malloc(sizeof(char **) * (count_line + 1), data);
 	if (!map)

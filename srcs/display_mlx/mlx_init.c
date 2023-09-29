@@ -6,17 +6,11 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2123/09/25 11:41:59 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/09/28 15:17:46 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/09/29 14:12:50 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Cub3D.h"
-
-// t_all	*all_init(void)
-// {
-// t_all *all;
-//
-// }
 
 int	start_mlx(t_data *data)
 {
@@ -34,7 +28,6 @@ int	start_mlx(t_data *data)
 	mlx_loop_hook(data->all->mlx, &main_loop, &data);
 	mlx_hook(data->all->win, 17, 0, mlx_loop_end, data->all->mlx);
 	mlx_hook(data->all->win, 2, (1L << 0), key_press, &data);
-    // mlx_hook(data->all->win, KeyRelease, KeyReleaseMask, key_release, &data);
 	mlx_loop(data->all->mlx);
 	data_free(data);
 	return (0);
