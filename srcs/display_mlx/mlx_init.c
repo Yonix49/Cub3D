@@ -6,7 +6,7 @@
 /*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2123/09/25 11:41:59 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/10/03 11:43:29 by mhajji-b         ###   ########.fr       */
+/*   Updated: 2023/10/03 12:34:06 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int	start_mlx(t_data *data)
 		return (data_free(data), 1);
 	data->all->win = mlx_new_window(data->all->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!data->all->win)
-		return (data_free(data), ft_putstr_fd(2, "Error\nFailed to create window\n"), 1);
+		return (data_free(data), ft_putstr_fd(2,
+				"Error\nFailed to create window\n"), 1);
 	if (!set_images(data))
-		return (data_free(data), ft_putstr_fd(2, "Error\nFailed to set images\n"), 1);
+		return (data_free(data), ft_putstr_fd(2,
+				"Error\nFailed to set images\n"), 1);
 	mlx_loop_hook(data->all->mlx, &main_loop, &data);
 	mlx_hook(data->all->win, 17, 0, mlx_loop_end, data->all->mlx);
 	mlx_hook(data->all->win, 2, (1L << 0), key_press, &data);
