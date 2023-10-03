@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhajji-b <mhajji-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:56:20 by fililafrapp       #+#    #+#             */
-/*   Updated: 2023/09/29 14:10:56 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/10/03 11:45:00 by mhajji-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ void	ft_free_all_garbage(t_data *data)
 
 int	data_free(t_data *data)
 {
-	mlx_destroy_image(data->all->mlx, data->all->img.img);
+	if (data->all->mlx)
+		mlx_destroy_image(data->all->mlx, data->all->img.img);
 	if (data->all->win)
 	{
 		mlx_clear_window(data->all->mlx, data->all->win);
