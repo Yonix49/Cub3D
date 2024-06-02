@@ -1,7 +1,8 @@
-![Demo Cub3d](assets/Cub3d.gif)
 
 
 # Cub3D - Mon premier RayCaster avec la minilibX
+
+![Demo Cub3d](assets/Cub3d.gif)
 
 **Cub3D** est un projet qui vous permet de créer une représentation graphique 3D à l'intérieur d'un labyrinthe en utilisant la technique du ray-casting. Il est inspiré du jeu Wolfenstein3D, considéré comme le premier jeu de tir à la première personne (FPS) de l'histoire du jeu vidéo. Votre objectif est de créer une vue dynamique à l'intérieur du labyrinthe, où vous pourrez vous déplacer et explorer l'environnement.
 
