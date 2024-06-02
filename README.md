@@ -1,4 +1,4 @@
-![Demo Cub3d](assets/Cub3D.gif)
+![Demo Cub3d](assets/Cub3d.gif)
 
 
 # Cub3D - Mon premier RayCaster avec la minilibX
